@@ -5,12 +5,11 @@
 // Test:
 // Ergebnis:
 
-int aufgabe3(){
-    int rateVersuche = 8;
-    int alter;
-    printf("Wie alt bist Du?");
-    scanf("%i", &alter);
-    if (alter < 10){
+//Aufgabe 3
+int versuche(int alter) {
+    int rateVersuche;
+    printf("%i\n", alter);
+    if (alter < 10) {
         rateVersuche = 12;
     }
     if (alter > 40){
@@ -19,15 +18,17 @@ int aufgabe3(){
     if (alter % 2 == 0){
         rateVersuche++;
     }
-    printf("Alter: %i", alter);
-    printf("\n%i", rateVersuche);
-    return 0;
+    return rateVersuche;
 }
+
 
 int aufgabe5(){
     int fehler;
     scanf("%i", &fehler);
     switch (fehler) {
+        case 0:
+            printf("Glueck gehabt, auf ein Neues!\n");
+            break;
         case 1:
             printf("Der erste Galgenfuss wurde gebaut.\n");
             break;
@@ -50,7 +51,7 @@ int aufgabe5(){
             printf("Der Rumpf des Hangman wurde gezeichnet.\n");
             break;
         case 8:
-            printf("Der linke Arm des armen Manns wurde hinzugezeichnet.\n");
+            printf("Der linke Arm des armen Manns wurde platziert.\n");
             break;
         case 9:
             printf("Der rechte Arm ist nun an seinem Platz.\n");
@@ -65,41 +66,84 @@ int aufgabe5(){
             printf("Sie hängen am Galgen und sind tot.\n");
             break;
         default:
+            printf("WTF \n");
             break;
     }
     return 0;
 }
 
 
-
-
-
 int main() {
     char wort[255] = "";
-    int fehler = 0;
-    int rateVersuche = 8;
+    int alter;
+    int rateVersuche;
+    int fehler = 13;
     int richtigGeraten = 0;
-    int anzahlBuchstaben = 6;
-    int eingabe;
+    char eingabe;
 
-
+    //  Set Lösungswort
+    printf("Loesungswort eingeben: ");
     scanf("%s", wort);
+    printf("%s\n", wort);
+
+
+    // Set placerHolder string "____", genauso lange wie die Antwort
+    //    F---h
+    char lw[strlen(wort)];
+    for (int i = 0; i < strlen(wort); i++){
+        lw[i] = '_';
+    }
+    printf(" %s\n", lw);
+
+
+
+    // Set alter
+    printf("Alter eingeben: ");
+    scanf("%i", &alter);
+    rateVersuche = versuche(alter);
+    // Errechne Rateversuche
+    printf("rateVersuche: %i\n", rateVersuche);
+    fehler = fehler-rateVersuche;
+
 
     //Aufgabe8
-    //Schleife
-    while (fehler != rateVersuche && richtigGeraten != anzahlBuchstaben) {
-        scanf("%i", &eingabe);
+    //Schleife läuft solange wie fehler oder anzahl buchstaben nicht erreicht ist
+    while (fehler != rateVersuche && richtigGeraten != strlen(wort)) {
+        printf("Eingabe: ");
+        scanf(" %c", &eingabe);
+    int treffer = 0;
 
-        switch (eingabe) {
-            case 1:
-                fehler++;
-                break;
-            case 2:
-                richtigGeraten++;
+        //vergleiche eingabe mit Antwort
+        for (int i = 0; i < strlen(wort); i++){
+
+            if (wort[i] == eingabe){
+                lw[i] = eingabe;
+                treffer++;
+            }
+        }
+
+        //Zaehle treffer hoch
+        //Todo Switch oder if Doz Fragen!
+//        if(treffer > 0){
+//            richtigGeraten = richtigGeraten + treffer;
+//            fehlerAusgabe(fehler);
+//        }
+//        else{
+//            fehler++;
+//            fehlerAusgabe(fehler);
+//        }
+
+        switch (treffer){
+            case 0:
+            fehler++;
+                fehlerAusgabe(fehler);
                 break;
             default:
+                richtigGeraten = richtigGeraten + treffer;
+                fehlerAusgabe(fehler);
                 break;
         }
+        printf("%s\n", lw);
 
     }
 
