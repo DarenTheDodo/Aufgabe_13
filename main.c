@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 // cgrahl3s, kzande3s
 //
 // Test:
@@ -84,8 +85,13 @@ int main() {
     //  Set Lösungswort
     printf("Loesungswort eingeben: ");
     scanf("%s", wort);
-    printf("%s\n", wort);
 
+    // Set Loesungswort to lower case
+    for (int i = 0; i < strlen(wort); i++){
+        wort[i] = tolower(wort[i]);
+    }
+
+    printf("%s\n", wort);
 
     // Set placerHolder string "____", genauso lange wie die Antwort
     //    F---h
@@ -103,15 +109,20 @@ int main() {
     rateVersuche = versuche(alter);
     // Errechne Rateversuche
     printf("rateVersuche: %i\n", rateVersuche);
-    fehler = fehler-rateVersuche;
+    fehler = fehler - rateVersuche;
+    fehlerAusgabe(fehler);
 
 
     //Aufgabe8
     //Schleife läuft solange wie fehler oder anzahl buchstaben nicht erreicht ist
-    while (fehler != rateVersuche && richtigGeraten != strlen(wort)) {
+    //TODO 12 durch Variable RateVersuche Richtig machen!
+    while (fehler != 12 && richtigGeraten != strlen(wort)) {
+        int treffer = 0;
+
+        printf("Fehler: %i \n", fehler);
         printf("Eingabe: ");
         scanf(" %c", &eingabe);
-    int treffer = 0;
+        eingabe = tolower(eingabe);
 
         //vergleiche eingabe mit Antwort
         for (int i = 0; i < strlen(wort); i++){
