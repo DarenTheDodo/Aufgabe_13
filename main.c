@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 // cgrahl3s, kzande3s
-//
+// Das fertige Hangman Spiel
 // Test:
 // Ergebnis:
 
@@ -13,8 +13,11 @@ int versuche(int alter) {
     if (alter < 10) {
         rateVersuche = 12;
     }
-    if (alter > 40){
+    else if (alter > 40){
         rateVersuche = 10;
+    }
+    else{
+        rateVersuche = 8;
     }
     if (alter % 2 == 0){
         rateVersuche++;
@@ -37,7 +40,7 @@ int aufgabe5(){
             printf("Der Galgenpfahl wurde errichtet.\n");
             break;
         case 3:
-            printf("Der Galgenstützbalken wurde gebaut.\n");
+            printf("Der Galgenst\x81tzbalken wurde gebaut.\n");
             break;
         case 4:
             printf("Der Galgenquerbalken wurde fertiggestellt.\n");
@@ -64,7 +67,7 @@ int aufgabe5(){
             printf("Das rechte Bein ist auch vorhanden, letzte Chance!\n");
             break;
         case 12:
-            printf("Sie hängen am Galgen und sind tot.\n");
+            printf("Sie h\x84ngen am Galgen und sind tot.\n");
             break;
         default:
             printf("WTF \n");
@@ -78,7 +81,7 @@ int main() {
     char wort[255] = "";
     int alter;
     int rateVersuche;
-    int fehler = 13;
+    int fehler = 12;
     int richtigGeraten = 0;
     char eingabe;
 
