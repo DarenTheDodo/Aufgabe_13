@@ -9,7 +9,6 @@
 //Aufgabe 3
 int versuche(int alter) {
     int rateVersuche;
-    printf("%i\n", alter);
     if (alter < 10) {
         rateVersuche = 12;
     }
@@ -26,13 +25,8 @@ int versuche(int alter) {
 }
 
 
-int aufgabe5(){
-    int fehler;
-    scanf("%i", &fehler);
+int fehlerAusgabe(int fehler){
     switch (fehler) {
-        case 0:
-            printf("Glueck gehabt, auf ein Neues!\n");
-            break;
         case 1:
             printf("Der erste Galgenfuss wurde gebaut.\n");
             break;
@@ -70,7 +64,7 @@ int aufgabe5(){
             printf("Sie h\x84ngen am Galgen und sind tot.\n");
             break;
         default:
-            printf("WTF \n");
+            printf("Gl\x81""ck gehabt, auf ein Neues!\n");
             break;
     }
     return 0;
@@ -86,10 +80,10 @@ int main() {
     char eingabe;
 
     //  Set Lösungswort
-    printf("Loesungswort eingeben: ");
+    printf("L\x94sungswort eingeben: ");
     scanf("%s", wort);
 
-    // Set Loesungswort to lower case
+    // Set Lösungswort to lower case
     for (int i = 0; i < strlen(wort); i++){
         wort[i] = tolower(wort[i]);
     }
@@ -110,6 +104,8 @@ int main() {
     printf("Alter eingeben: ");
     scanf("%i", &alter);
     rateVersuche = versuche(alter);
+
+
     // Errechne Rateversuche
     printf("rateVersuche: %i\n", rateVersuche);
     fehler = fehler - rateVersuche;
@@ -118,11 +114,10 @@ int main() {
 
     //Aufgabe8
     //Schleife läuft solange wie fehler oder anzahl buchstaben nicht erreicht ist
-    //TODO 12 durch Variable RateVersuche Richtig machen!
     while (fehler != 12 && richtigGeraten != strlen(wort)) {
         int treffer = 0;
 
-        printf("Fehler: %i \n", fehler);
+
         printf("Eingabe: ");
         scanf(" %c", &eingabe);
         eingabe = tolower(eingabe);
@@ -136,7 +131,7 @@ int main() {
             }
         }
 
-        //Zaehle treffer hoch
+        //Zähle treffer hoch
         //Todo Switch oder if Doz Fragen!
 //        if(treffer > 0){
 //            richtigGeraten = richtigGeraten + treffer;
@@ -149,7 +144,7 @@ int main() {
 
         switch (treffer){
             case 0:
-            fehler++;
+                fehler++;
                 fehlerAusgabe(fehler);
                 break;
             default:
@@ -157,19 +152,18 @@ int main() {
                 fehlerAusgabe(fehler);
                 break;
         }
-        printf("%s\n", lw);
 
+        printf("Fehler: %i \n", fehler);
+        printf("%s\n\n", lw);
+
+    }
+    if(richtigGeraten == strlen(wort)){
+        printf("SIE HABEN GEWONNEN!");
+    }else{
+        printf("SIE HABEN VERLOREN!");
     }
 
 
-//Aufgabe12
-
-    for (int i = 0; i <= strlen(wort); i++) {
-        printf("%c", wort[i]);
-        if (i == strlen(wort)) {
-            printf("\n");
-        }
-    }
 
     return 0;
 }
