@@ -107,10 +107,10 @@ int main() {
         rateVersuche = versuche(alter);
 
 
-    // Errechne Rateversuche
-    printf("rateVersuche: %i\n", rateVersuche);
-    fehler = fehler - rateVersuche;
-    fehlerAusgabe(fehler);
+        // Errechne Rateversuche
+        printf("Sie erhalten : %i Versuche um das Wort zu erraten\n", rateVersuche);
+        fehler = fehler - rateVersuche;
+        fehlerAusgabe(fehler);
 
 
         //Aufgabe8
