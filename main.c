@@ -94,6 +94,7 @@ int main() {
 
         // Set placerHolder string "____", genauso lange wie die Antwort
         //    F---h
+        //TODO Bei einer zweiten Runde mit einem Wort strlen<2 wird ein buchstabe zuviel ausgegeben
         char lw[strlen(wort)];
         for (int i = 0; i < strlen(wort); i++) {
             lw[i] = '_';
