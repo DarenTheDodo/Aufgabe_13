@@ -75,6 +75,7 @@ int main() {
     int bool = 1;
     while (bool == 1) {
         char wort[255] = "";
+        char wort2[255] = "";
         int alter;
         int rateVersuche;
         int fehler = 12;
@@ -84,6 +85,7 @@ int main() {
         //  Set Lösungswort
         printf("L\x94sungswort eingeben: ");
         scanf(" %s", wort);
+        strcpy(wort2, wort);
 
         // Set Lösungswort to lower case
         for (int i = 0; i < strlen(wort); i++) {
@@ -129,6 +131,7 @@ int main() {
 
                 if (wort[i] == eingabe) {
                     lw[i] = eingabe;
+                    wort[i] = '0';
                     treffer++;
                 }
             }
@@ -170,7 +173,7 @@ int main() {
             printf("SIE HABEN GEWONNEN!\n");
         } else {
             printf("SIE HABEN VERLOREN!\n");
-            printf("Das Wort lautete: %s\n", wort);
+           printf("Das Wort lautete: %s\n", wort2);
         }
         printf("Dr\x81""cken sie 1 um nochmal zu spielen!\n");
         scanf("%i", &bool);
