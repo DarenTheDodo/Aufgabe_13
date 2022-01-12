@@ -81,14 +81,15 @@ int main() {
         int fehler = 12;
         int richtigGeraten = 0;
         char eingabe;
+        int anzbuch;
 
         //  Set Lösungswort
         printf("L\x94sungswort eingeben: ");
         scanf(" %s", wort);
         strcpy(wort2, wort);
-
+        anzbuch= strlen(wort);
         // Set Lösungswort to lower case
-        for (int i = 0; i < strlen(wort); i++) {
+        for (int i = 0; i < anzbuch; i++) {
             wort[i] = tolower(wort[i]);
         }
 
@@ -97,11 +98,11 @@ int main() {
         // Set placerHolder string "____", genauso lange wie die Antwort
         //    F---h
         //TODO Bei einer zweiten Runde mit einem Wort strlen<2 wird ein buchstabe zuviel ausgegeben
-        char lw[strlen(wort)];
-        for (int i = 0; i < strlen(wort); i++) {
+        char lw[255];
+        for (int i = 0; i < anzbuch; i++) {
             lw[i] = '_';
         }
-
+        lw[anzbuch]= '\0';
 
 
         // Set alter
@@ -118,16 +119,16 @@ int main() {
 
         //Aufgabe8
         //Schleife läuft solange wie fehler oder anzahl buchstaben nicht erreicht ist
-        while (fehler != 12 && richtigGeraten != strlen(wort)) {
+        while (fehler != 12 && richtigGeraten != anzbuch) {
             int treffer = 0;
 
-            printf("%s\n\n", lw);
+            printf("%s\n\n", lw); //todo
             printf("Eingabe: ");
             scanf(" %c", &eingabe);
             eingabe = tolower(eingabe);
 
             //vergleiche eingabe mit Antwort
-            for (int i = 0; i < strlen(wort); i++) {
+            for (int i = 0; i < anzbuch; i++) {
 
                 if (wort[i] == eingabe) {
                     lw[i] = eingabe;
@@ -169,7 +170,7 @@ int main() {
             }
 
         }
-        if (richtigGeraten == strlen(wort)) {
+        if (richtigGeraten == anzbuch) {
             printf("SIE HABEN GEWONNEN!\n");
         } else {
             printf("SIE HABEN VERLOREN!\n");
